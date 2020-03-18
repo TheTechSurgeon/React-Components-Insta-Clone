@@ -9,27 +9,30 @@ import "./Posts.css";
 // pass props in this file to
 const Post = props => {
   // set up state for the likes
-  const[like,setLike] =  useState(0);
+  const[like,setLike] =  useState(props.dataFromParent.likes);
 
+  function IncrementLike(){
+    setLikes(likes=> likes+1)
+  }
   return (
     <div className="post-border">
       <PostHeader
-        username={props.post.username}
+        username={props.dataFromParent.username}
         thumbnailUrl={
-          props.post.thumbnailUrl
+          props.dataFromParent.thumbnailUrl
         }
       />
       <div className="post-image-wrapper">
         <img
           alt="post thumbnail"
           className="post-image"
-          src={props.post.imageUrl}
+          src={props.dataFromParent.imageUrl}
         />
       </div>
       <LikeSection />
       <CommentSection
-        postId={props.post.imageUrl}
-        comments={props.post.comments}
+        postId={props.dataFromParent.imageUrl}
+        comments={props.dataFromParent.comments}
       />
     </div>
   );
